@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const TodoForm = ({ setTodos }: Props) => {
-  const { register, handleSubmit } = useForm<Todo>({
+  const { register, handleSubmit, reset } = useForm<Todo>({
     defaultValues: { name: "", created_at: "" },
   });
   const handleCreate = handleSubmit((value) => {
@@ -19,6 +19,7 @@ export const TodoForm = ({ setTodos }: Props) => {
       created_at: new Date().toLocaleString(),
     };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
+    reset();
   });
   return (
     <Box display="flex" justifyContent="space-between" sx={{ minWidth: 500 }}>
